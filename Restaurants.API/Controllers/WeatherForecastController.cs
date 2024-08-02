@@ -6,12 +6,12 @@ namespace Restaurants.API.Controllers;
 [Route("api/[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    
+
 
     private readonly ILogger<WeatherForecastController> _logger;
     private readonly IWeatherForecastService _weatherForecastService;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger, 
+    public WeatherForecastController(ILogger<WeatherForecastController> logger,
         IWeatherForecastService weatherForecastService)
     {
         _logger = logger;
@@ -19,10 +19,26 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet]
-    [Route("example")]
-    public IEnumerable<WeatherForecast> Get()
+    [Route("{take}/example")]
+    public IEnumerable<WeatherForecast> Get([FromQuery] int max, [FromRoute] int take)
     {
         var result = _weatherForecastService.Get();
         return result;
+    }
+
+    [HttpGet("CurrentDay")]
+    public ObjectResult GetCurrentDayForecast()
+    {
+        var result = _weatherForecastService.Get().First();
+
+        // Response.StatusCode = 400;
+
+        return Ok(result);
+    }
+
+    [HttpPost]
+    public string Hello([FromBody] string name)
+    {
+        return $"hello {name}";
     }
 }
