@@ -3,27 +3,13 @@
 
 @RestaurantsAPI_HostAddress = {{host}}:{{port}}
 
-GET {{RestaurantsAPI_HostAddress}}/api/weatherforecast/23/example?max=15
-Accept: application/json
-PojectUrl: {{RestaurantsAPI_HostAddress}}
-Guid: {{$guid}}
-LocalDate: {{$localDatetime iso8601}}
-Randon-int: {{$randomInt}}
-
-###
-
-GET {{RestaurantsAPI_HostAddress}}/api/weatherforecast/currentDay
-Accept: application/json
-PojectUrl: {{RestaurantsAPI_HostAddress}}
-Guid: {{$guid}}
-LocalDate: {{$localDatetime iso8601}}
-Randon-int: {{$randomInt}}
-
-###
-
-POST {{RestaurantsAPI_HostAddress}}/api/weatherforecast
+POST {{RestaurantsAPI_HostAddress}}/api/weatherforecast/generate?count=3
 Content-Type: application/json
 
-"CloudGod"
+{
+  "min": -1,
+  "max": 98
+}
 
 ###
+
