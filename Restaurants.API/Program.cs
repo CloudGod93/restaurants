@@ -9,9 +9,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
 
-builder.Configuration.GetConnectionString("RestaurantsDb");
-
-builder.Services.AddInfrastructure();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
