@@ -1,3 +1,4 @@
+
 @RestaurantsAPI_HostAddress = https://localhost:7147
 
 GET {{RestaurantsAPI_HostAddress}}/api/restaurants
@@ -7,3 +8,22 @@ GET {{RestaurantsAPI_HostAddress}}/api/restaurants
 GET {{RestaurantsAPI_HostAddress}}/api/restaurants/1
 
 ###
+
+POST {{RestaurantsAPI_HostAddress}}/api/restaurants
+Content-Type: application/json
+
+{
+  "Name": "Big J's BBQ",
+  "Description": "Good 'ol Texas BBQ!",
+  "Category": "BBQ",
+  "HasDelivery": true,
+  "ContactEmail": "justin@gmail.com",
+  "ContactNumber": "806-599-3392",
+  "City": "Amarillo",
+  "Street": "456 Main Street",
+  "PostalCode": "79109"
+}
+
+###
+
+GET https://localhost:7147/api/restaurants/1002
