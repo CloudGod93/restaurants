@@ -5,19 +5,17 @@ namespace Restaurants.Application.Restaurants.Validators;
 
 public class CreateRestaurantDtoValidator : AbstractValidator<CreateRestaurantDto>
 {
+    private readonly List<string> validCategories = ["Italian", "American", "BBQ", "Mexican", "Japanese", "Indian"];
+
     public CreateRestaurantDtoValidator()
     {
         RuleFor(dto => dto.Name)
             .Length(3, 100)
             .WithMessage("Name must be min 3 and max 100 characters.");
 
-        RuleFor(dto => dto.Description)
-            .NotEmpty()
-            .WithMessage("Description is required.");
-
         RuleFor(dto => dto.Category)
-            .NotEmpty()
-            .WithMessage("Insert a valid category.");
+            .Must(validCategories.Contains)
+            .WithMessage("Invalid category. Please choose from the valid categories");
 
         RuleFor(dto => dto.ContactEmail)
             .EmailAddress()
